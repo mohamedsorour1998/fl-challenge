@@ -1,5 +1,6 @@
 import IPv4Addr from "./IPv4Addr";
 import "./App.css";
+const unusedVar = 1
 
 function App() {
   return (
