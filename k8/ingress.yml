@@ -1,18 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: minimal-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: fsl-challenge
 spec:
-  ingressClassName: nginx-example
+  ingressClassName: traefik
   rules:
-  - http:
+  - host: "fsl-challenge.me"
+    http:
       paths:
-      - path: /testpath
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
-            name: test
+            name: fsl-challenge
             port:
-              number: 80
+              number: 8080
