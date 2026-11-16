@@ -1,21 +1,21 @@
 FROM node:15 as builder
 
-WORKDIR
+WORKDIR /app
 
-COPY
+COPY package.json package-lock.json .npmrc ./
 
-RUN 
+RUN npm ci
 
-COPY
+COPY . .
 
-RUN 
+RUN npm run build
 
-FROM
+FROM nginxinc/nginx-unprivileged:1.27-alpine
 
-WORKDIR
+WORKDIR /usr/share/nginx/html
 
-COPY
+COPY --from=builder /app/build .
 
-RUN 
+#RUN 
 
-ENTRYPOINT 
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
